@@ -285,8 +285,10 @@ sub _xor_mask {
   # 512 byte mask
   $mask = $mask x 128;
   my $output = '';
-  $output .= $_ ^ $mask while length($_ = substr($input, 0, 512, '')) == 512;
-  return $output .= $_ ^ substr($mask, 0, length, '');
+  my $snip ;
+  $output .= $snip ^ $mask 
+	while length($snip = substr($input, 0, 512, '')) == 512;
+  return $output .= $snip ^ substr($mask, 0, length, '');
 }
 
 1;
